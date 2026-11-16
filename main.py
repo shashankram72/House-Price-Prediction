@@ -31,7 +31,20 @@ print(data["SalePrice"].describe())
 
 
 # Select input features
-X = data[["GrLivArea", "BedroomAbvGr", "FullBath"]]
+X = data[
+    [
+        "GrLivArea",
+        "BedroomAbvGr",
+        "FullBath",
+        "OverallQual",
+        "GarageCars",
+        "TotalBsmtSF",
+        "1stFlrSF",
+        "YearBuilt",
+        "TotRmsAbvGrd",
+        "LotArea"
+    ]
+]
 
 # Select target variable
 y = data["SalePrice"]
@@ -96,6 +109,17 @@ model = LinearRegression()
 
 # Train the model
 model.fit(X_train, y_train)
+
+# Calculate training and testing R2 scores
+train_score = model.score(X_train, y_train)
+test_score = model.score(X_test, y_test)
+
+print("\nMODEL PERFORMANCE:")
+print("Training R2 Score:", train_score)
+print("Testing R2 Score:", test_score)
+
+print("\nTRAINING SCORE (%):", train_score * 100)
+print("TESTING SCORE (%):", test_score * 100)
 
 print("\nMODEL TRAINED SUCCESSFULLY!")
 
